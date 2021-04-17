@@ -6,7 +6,7 @@ import 'package:conspiratus/layout/JoinToGamePage.dart';
 import 'package:conspiratus/routing/routing.dart';
 import 'package:provider/provider.dart';
 import 'package:conspiratus/model/Settings.dart';
-import 'package:conspiratus/layout/WaitingForGamePage.dart';
+import 'package:conspiratus/layout/GameSettingsConfigurePage.dart';
 
 class RootMaterialApp extends StatelessWidget {
   @override
@@ -25,7 +25,7 @@ class RootMaterialApp extends StatelessWidget {
         Routing.mainPage: (context) => BeginGamePage(),
         Routing.createGamePage: (context) => CreateGamePage(),
         Routing.joinToGamePage: (context) => JoinToGamePage(),
-        Routing.waitingForGamePage: (context) => WaitingForGamePage()
+        Routing.waitingForGamePage: (context) => GameSettingsConfigurePage(title: 'dupa123')
       },
     ),
     );

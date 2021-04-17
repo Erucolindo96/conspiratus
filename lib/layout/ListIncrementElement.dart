@@ -17,7 +17,6 @@ class _ListIncrementItemState extends State<ListIncrementItem> {
   Widget build(BuildContext context) {
     if (widget.valueChanged != null) {
       widget.valueChanged!(_counter);
-      print('ListIncrementItem value: $_counter');
     }
 
     return new Row(
