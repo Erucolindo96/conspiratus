@@ -1,52 +1,18 @@
+import 'package:conspiratus/model/AppMode.dart';
 import 'package:flutter/material.dart';
+import 'package:conspiratus/routing/routing.dart';
+import 'package:conspiratus/ConspiratusApp.dart';
+import 'package:provider/provider.dart';
+import 'package:conspiratus/model/Settings.dart';
 
-// class GameModeChangeNotifier extends ChangeNotifier{
-//   GameMode? _gameMode;
-//
-//   GameMode? get gameMode => _gameMode;
-//
-//   set gameMode(GameMode? value) {
-//     _gameMode = value;
-//     notifyListeners();
-//   }
-// }
-//
-// class BeginGamePage extends StatelessWidget with ChangeNotifier{
-//   final String title = 'Conspiratus';
-//
-// }
-
-class GameModeState with ChangeNotifier{
-  GameMode? _gameMode;
-
-  GameModeState();
-
-  GameMode? get gameMode => _gameMode;
-
-  set gameMode(GameMode? value) {
-    _gameMode = value;
-    notifyListeners();
-  }
-}
-
-class BeginGamePage extends StatefulWidget{
+class BeginGamePage extends StatelessWidget {
   final String title = 'Conspiratus';
-
-  @override
-  State<StatefulWidget> createState() => _BeginGamePageState();
-
-}
-
-class _BeginGamePageState extends State<BeginGamePage>{
-  GameModeState _gameModeState = GameModeState();
-
-  GameModeState get gameModeState => _gameModeState;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Column(
         children: [
@@ -54,21 +20,20 @@ class _BeginGamePageState extends State<BeginGamePage>{
               child: TextButton(
                   child: Text("Załóż grę LAN"),
                   onPressed: () {
-                    _gameModeState.gameMode = GameMode.MASTER;
-                    Navigator.pushNamed(context, '/master');
+                    Provider.of<Settings>(context, listen: false).appMode = AppMode.MASTER;
+                    Navigator.pushNamed(context, Routing.createGamePage);
+                    print(Provider.of<Settings>(context, listen: false).appMode);
                   })),
           Center(
               child: TextButton(
                   child: Text("Dołącz do gry LAN"),
                   onPressed: () {
-                    _gameModeState.gameMode = GameMode.CLIENT;
-                    Navigator.pushNamed(context, '/client');
+                    Provider.of<Settings>(context, listen: false).appMode = AppMode.CLIENT;
+                    Navigator.pushNamed(context, Routing.joinToGamePage);
+                    print(Provider.of<Settings>(context, listen: false).appMode);
                   })),
         ],
       ),
     );
   }
 }
-
-
-enum GameMode { MASTER, CLIENT }

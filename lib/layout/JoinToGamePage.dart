@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:conspiratus/layout/RowTextInput.dart';
+import 'package:conspiratus/routing/routing.dart';
 
 class JoinToGamePage extends StatelessWidget {
   final String title = 'Conspiratus';
@@ -12,7 +13,15 @@ class JoinToGamePage extends StatelessWidget {
       appBar: AppBar(title: Text(this.title)),
       body: Center(
         child: Column(
-          children: [RowTextInput('Nazwa gracza'), GameToJoinListWidget()],
+          children: [
+            RowTextInput('Nazwa gracza'),
+            // GameToJoinListWidget()
+            TextButton(
+                child: Text("Załóż grę LAN"),
+                onPressed: () {
+                  Navigator.pushNamed(context, Routing.mainPage);
+                })
+          ],
         ),
       ),
     );
@@ -23,7 +32,7 @@ class GameToJoinListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
+      height: 200,
       width: 200,
       child: CustomScrollView(
         slivers: <Widget>[

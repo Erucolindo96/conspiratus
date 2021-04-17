@@ -1,5 +1,7 @@
+import 'package:conspiratus/routing/routing.dart';
 import 'package:flutter/material.dart';
 import 'package:conspiratus/layout/RowTextInput.dart';
+
 class CreateGamePage extends StatelessWidget {
   final String title = 'Conspiratus';
 
@@ -11,8 +13,7 @@ class CreateGamePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(this.title),
       ),
-      body:
-      Center(
+      body: Center(
         child: Column(
           children: [
             RowTextInput("Nazwa gracza"),
@@ -20,9 +21,12 @@ class CreateGamePage extends StatelessWidget {
             RowTextInput("Maksymalna ilośc graczy"),
             Row(
               children: [
-                TextButton(onPressed: () {
-                  Navigator.pushNamed(context, '/');
-                }, child: Text("Stwórz grę"),)
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routing.waitingForGamePage);
+                  },
+                  child: Text("Stwórz grę"),
+                )
               ],
             )
           ],
@@ -31,5 +35,3 @@ class CreateGamePage extends StatelessWidget {
     );
   }
 }
-
-
